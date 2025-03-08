@@ -15,21 +15,23 @@ orderButton.addEventListener("click", () => {
         }
     })
     if (selectedItems.length === 0) {
-        alert("Please Select At least OneCheckBox..")
-        return;
+        alert("Please Select At least One CheckBox..");
+        return
     }
-    orderButton.disabled = true;
-
+    orderButton.disabled = true; 
+    OrderId.textContent = "Your order is in progress...";
+    OrderId.style.display = "block";
 
 const promise = new Promise((resolve, reject) => {
     setTimeout(resolve, getRandomTime());
 })
 promise.then(() => {
      const orderNo = getOrderNumber();
-      OrderIdValue.textContent =  orderNo;
+      OrderIdValue.textContent =  "Order ID: " + orderNo;
+      OrderId.textContent = "";
       OrderId.append(OrderIdValue);
      OrderId.style.display =("block"); 
-      food = selectedItems[Math.floor(Math.random())*selectedItems.length];
+      food = selectedItems[Math.floor(Math.random()*selectedItems.length)];
      console.log(food);
 
 switch(food){
@@ -52,7 +54,7 @@ orderButton.disabled = false;
 
 function getRandomTime() {
     let time;
-    time = Math.floor(Math.random() * 7000);
+    time = Math.floor(Math.random() * 9000);
     return time;
 }
 function getOrderNumber(){
